@@ -1,0 +1,36 @@
+{
+  "name": "navedex-API",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "src/index.js",
+  "description": "Navedex API Project, technical test for vacancy",
+  "author": "Gabriel da Silva Bichê",
+  "scripts": {
+    "dev": "nodemon src/index.js --exec babel-node",
+    "build": "rm -rf build && mkdir build && babel src -s -d build",
+    "start": "node build/index.js",
+    "db:migrate": "babel-node node_modules/knex/bin/cli.js --knexfile src/database/knexfile.js migrate:latest",
+    "db:rollback": "babel-node node_modules/knex/bin/cli.js --knexfile src/database/knexfile.js migrate:rollback",
+    "db:seed": "babel-node node_modules/knex/bin/cli.js --knexfile src/database/knexfile.js seed:run"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^2.3.0",
+    "koa": "^2.13.4",
+    "koa-body": "^5.0.0",
+    "koa-jwt": "^4.0.3",
+    "koa-router": "^12.0.0",
+    "objection": "^3.0.1",
+    "path": "^0.12.7",
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
+    "@babel/node": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "nodemon": "^2.0.20"
+  }
+}
