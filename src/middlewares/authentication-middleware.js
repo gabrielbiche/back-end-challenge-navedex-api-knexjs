@@ -1,7 +1,7 @@
 import jwt from 'koa-jwt'
 
 import { ACCESS_SECRET } from '../config'
-import { Unauthorized, verifyToken } from '../helpers'
+import { Unauthorized, verifyJWTToken } from '../helpers'
 
 export const getToken = ({ headers }) => {
   if (!headers.authorization) {
@@ -10,7 +10,7 @@ export const getToken = ({ headers }) => {
 
   const [bearer, token] = headers.authorization.split(' ')
 
-  verifyToken(token)
+  verifyJWTToken(token)
 
   if (bearer !== 'Bearer') {
     throw new Unauthorized('Invalid token')

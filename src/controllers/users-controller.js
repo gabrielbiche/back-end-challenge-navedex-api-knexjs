@@ -1,14 +1,21 @@
 import bcrypt from 'bcrypt'
 
 import User from '../models/User'
-import { generateJWTToken, Unauthorized } from '../helpers'
+import { BadRequest, generateJWTToken, Unauthorized } from '../helpers'
 
 export const signup = async (ctx) => {
   const { body } = ctx.request
 
+  const userExists = await User.query().findOne({ email: body.email })
+
+  if (userExists)
+    throw new BadRequest('There is already a user registered with this email')
+
+  const hashPassword = await bcrypt.hash(body.password, 12)
+
   let user = await User.query().insert({
     email: body.email,
-    password: body.password,
+    password: hashPassword,
   })
 
   user = await user.$query().modify('defaultSelects')
@@ -23,18 +30,14 @@ export const login = async (ctx) => {
     .findOne({ email: body.email })
     .throwIfNotFound()
     .catch(() => {
-      throw new Unauthorized('User not found')
+      throw new Unauthorized('Incorrect email or password')
     })
 
-  const isValid = await bcrypt.compare(body.password, user.password)
+  const verifyPassword = await bcrypt.compare(body.password, user.password)
 
-  if (!isValid) {
-    throw new Unauthorized('Incorrect email or password')
-  }
+  if (!verifyPassword) throw new Unauthorized('Incorrect email or password')
 
-  const parsedUser = user.toJSON()
-
-  const token = generateJWTToken({ id: parsedUser.id })
+  const token = generateJWTToken( user.id )
 
   return ctx.set('Authorization', token), (ctx.status = 204)
 }

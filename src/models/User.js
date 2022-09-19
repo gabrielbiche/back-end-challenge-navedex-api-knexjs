@@ -1,5 +1,4 @@
 import { Model } from 'objection'
-import bcrypt from 'bcrypt'
 
 import Naver from './Naver'
 import Project from './Project'
@@ -7,16 +6,6 @@ import Project from './Project'
 class User extends Model {
   static get tableName() {
     return 'users'
-  }
-
-  async $beforeInsert(context) {
-    await super.$beforeInsert(context)
-    return this.generateHashPassword()
-  }
-
-  async generateHashPassword() {
-    const saltRounds = 12
-    this.password = await bcrypt.hash(this.password, saltRounds)
   }
 
   static modifiers = {

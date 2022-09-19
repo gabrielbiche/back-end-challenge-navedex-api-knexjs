@@ -1,13 +1,8 @@
 import jwt from 'jsonwebtoken'
 
-import { ACCESS_SECRET } from '../config'
+import { ACCESS_SECRET, ACCESS_EXPIRE } from '../config'
 
-export const generateJWTToken = (tokenData) => {
-  const token = jwt.sign(tokenData, ACCESS_SECRET, {
-    expiresIn: '15m',
-  })
+export const generateJWTToken = (id) =>
+  jwt.sign({ id: id }, ACCESS_SECRET, { expiresIn: ACCESS_EXPIRE })
 
-  return token
-}
-
-export const verifyToken = (token) => jwt.verify(token, ACCESS_SECRET)
+export const verifyJWTToken = (token) => jwt.verify(token, ACCESS_SECRET)
