@@ -7,8 +7,6 @@ export const seed = async (knex) => {
       id: 1,
       email: 'beltrano@domain.com',
       password: await bcrypt.hash('12345678', 12),
-      created_at: new Date(),
-      updated_at: new Date(),
     },
   ])
 }

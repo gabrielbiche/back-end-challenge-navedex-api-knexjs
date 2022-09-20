@@ -4,20 +4,14 @@ export const seed = async knex => {
     {
       naver_id: 1,
       project_id: 1,
-      created_at: new Date(),
-      updated_at: new Date()
     },
     {
       naver_id: 2,
       project_id: 1,
-      created_at: new Date(),
-      updated_at: new Date()
     },
     {
       naver_id: 1,
       project_id: 3,
-      created_at: new Date(),
-      updated_at: new Date()
     }
   ])
 }
