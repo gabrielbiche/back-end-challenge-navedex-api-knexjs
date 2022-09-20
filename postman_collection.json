@@ -1,0 +1,1252 @@
+{
+	"info": {
+		"_postman_id": "6758a81e-766f-4fc4-b377-31c2668dcb66",
+		"name": "NavedexAPI",
+		"description": "## Documentação para uso da API\n\n## Autenticação\nAo criar um usuário e efetuar login, você recebera por meio do cabeçalho de requisição HTTP Authorization o token JWT. Adicione o token a este mesmo cabeçalho de suas solicitações seguintes para obter acesso.\n\n## Códigos de status implementados \n**400 - Bad Request**\nDados enviados incorretamente ou fora do padrão. \n\n**401 - Anauthorized**\nSem autorização para acessar o recurso desejado. \n\n**404 - Not Found**\nRecurso solicitado não encontrado. \n\n**200 - Ok**\nRecurso solicitado com sucesso. \n\n**201 - Created**\nRecurso de criação de sucesso. \n\n**204 - No content**\nSucesso ao solicitar recurso, mas sem retorno de conteúdo, os cabeçalhos podem ser úteis.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16658273"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Signup - Rota de cadastro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"beltrano@domain.com\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"signup"
+							]
+						},
+						"description": "Recebe email e password e cria novo registro no banco\nUtilize o id que irá retornar da solicitação para acessar as rotas da seção Navers e Projects"
+					},
+					"response": [
+						{
+							"name": "Retorna o objeto do usuário criado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"gabriel@domain.com\",\n    \"password\": \"12345678\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-KoNQZZt42Lfbt0uyj0MuP042Gmo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Feb 2022 18:24:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"email\": \"gabriel@domain.com\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login - Rota para poder logar no sistema",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"beltrano@domain.com\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "Retorna no cabeçalho HTTP Authorization o token JWT para o usuário ter acesso à outras rotas"
+					},
+					"response": [
+						{
+							"name": "Para obter o token JWT acesse: Response -> Headers -> Authorization",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"gabriel@domain.com\",\n    \"password\": \"12345678\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjQzODAxNTA4LCJleHAiOjE2NDM4MTExMDh9.3jNzXdkrR96UukgGND8UgqjosRvzT5S6sOmXr1rbdg4"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Feb 2022 11:31:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"description": "Seção destinada a conter as rotas relacionadas aos usuários",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Navers",
+			"item": [
+				{
+					"name": "Index - Rota para listagem dos Navers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/navers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"navers"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Ciclano",
+									"disabled": true
+								},
+								{
+									"key": "admission_date",
+									"value": "2018/06/12",
+									"disabled": true
+								},
+								{
+									"key": "job_role",
+									"value": "Desenvolvedor",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "É possível  filtrar um naver por nome, tempo de empresa e cargo"
+					},
+					"response": [
+						{
+							"name": "Retorno de array com todos os navers ou filtrados por algum dos parâmetros acima, pertencentes ao usuário que fez a requisição.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/:user_id/navers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										":user_id",
+										"navers"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Ciclano",
+											"disabled": true
+										},
+										{
+											"key": "admission_date",
+											"value": "2018/06/12",
+											"disabled": true
+										},
+										{
+											"key": "job_role",
+											"value": "Desenvolvedor",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "216"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d8-5KDjJ4mAwAXN/VY1FU4B9NUMKqM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Feb 2022 12:11:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Fulano\",\n        \"birthdate\": \"1999-05-15\",\n        \"admission_date\": \"2020-06-12\",\n        \"job_role\": \"Desenvolvedor\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"ciclano\",\n        \"birthdate\": \"1992-10-28\",\n        \"admission_date\": \"2018-06-12\",\n        \"job_role\": \"Desenvolvedor\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Show - Rota para detalhar informações de um único naver através de seu identificador",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/navers/:naver_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"navers",
+								":naver_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "naver_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Além das informações do naver, traz quais projetos este participou"
+					},
+					"response": [
+						{
+							"name": "Retorno de um objeto contendo informações sobre o Naver",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/:user_id/navers/:naver_id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										":user_id",
+										"navers",
+										":naver_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										},
+										{
+											"key": "naver_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "155"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9b-BbSoUFztNvtTTLGLPgzTDCOt95k\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Feb 2022 12:09:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Fulano\",\n    \"birthdate\": \"1999-05-15\",\n    \"admission_date\": \"2020-06-12\",\n    \"job_role\": \"Desenvolvedor\",\n    \"projects\": [\n        {\n            \"id\": 3,\n            \"name\": \"Projeto muito bom\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Store - Rota de criação de naver",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Fulano\",\n    \"birthdate\": \"1999-05-15\",\n    \"admission_date\": \"2020-06-12\",\n    \"job_role\": \"Desenvolvedor\",\n    \"projects\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/navers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"navers"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Recebe através do body da request os dados do naver e um array com os identificadores dos projetos que ele participa e cria um novo registro no banco de dados vinculado ao usuário que fez a request, a declaração dos projetos em que o naver participa não é obrigatória na sua criação"
+					},
+					"response": [
+						{
+							"name": "Retorna o objeto do usuário criado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Fulano\",\n    \"birthdate\": \"1999-05-15\",\n    \"admission_date\": \"2020-06-12\",\n    \"job_role\": \"Desenvolvedor\",\n    \"projects\": [3]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/:user_id/navers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										":user_id",
+										"navers"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"79-A44GcXWyamBj1LlHxVkUuLulYk4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Feb 2022 11:56:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Fulano\",\n    \"birthdate\": \"1999-05-15\",\n    \"admission_date\": \"2020-06-12\",\n    \"job_role\": \"Desenvolvedor\",\n    \"projects\": [\n        {\n            \"id\": 3\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update - Rota para atualização de naver",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Fulano\",\n    \"birthdate\": \"1999-05-15\",\n    \"admission_date\": \"2020-06-12\",\n    \"job_role\": \"Desenvolvedor\",\n    \"projects\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/navers/:naver_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"navers",
+								":naver_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "naver_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Recebe através do body da request os dados do naver e um array com os identificadores dos projetos que ele participa e atualiza seu registro no banco de dados, a declaração dos projetos em que o naver participa não é obrigatória na sua atualização\nUm usuário só pode editar seus próprios navers "
+					},
+					"response": [
+						{
+							"name": "Retorna o objeto do usuário Atualizado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Fulano\",\n    \"birthdate\": \"1999-05-15\",\n    \"admission_date\": \"2020-06-12\",\n    \"job_role\": \"Desenvolvedor\",\n    \"projects\": [3]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/:user_id/navers/:naver_id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										":user_id",
+										"navers",
+										":naver_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										},
+										{
+											"key": "naver_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"79-A44GcXWyamBj1LlHxVkUuLulYk4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Feb 2022 12:01:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Fulano\",\n    \"birthdate\": \"1999-05-15\",\n    \"admission_date\": \"2020-06-12\",\n    \"job_role\": \"Desenvolvedor\",\n    \"projects\": [\n        {\n            \"id\": 3\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete - Rota para deletar um naver",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/navers/:naver_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"navers",
+								":naver_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "naver_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Recebe um identificador de naver e o remove dos registros do banco\nUm usuário só pode deletar seus próprios navers"
+					},
+					"response": []
+				}
+			],
+			"description": "Seção destinada a conter as rotas relacionadas aos navers",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Index - Rota para listagem dos projetos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Projeto muito bom",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "É possível filtrar um projeto por nome"
+					},
+					"response": [
+						{
+							"name": "Retorna um array com todos os projetos ou filtrado pelo nome, pertencentes ao usuário que fez a request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/:user_id/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										":user_id",
+										"projects"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Projeto muito bom",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "77"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4d-PizhTOG+m6XKpScf+cFnYNCWxgw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Feb 2022 12:15:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 3,\n        \"name\": \"Projeto muito bom\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Projeto Realmente Bom\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Show - Rota para detalhar um projeto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/projects/:project_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"projects",
+								":project_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "project_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Além das informações do projeto, trazer quais foram os navers que participaram"
+					},
+					"response": [
+						{
+							"name": "Retorna um objeto contendo informações sobre o projeto",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/:user_id/projects/:project_id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										":user_id",
+										"projects",
+										":project_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										},
+										{
+											"key": "project_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"99-lzBI9Uxx383VWfBSGU4MoZxcVzY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Feb 2022 12:07:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"name\": \"Projeto muito bom\",\n    \"navers\": [\n        {\n            \"id\": 1,\n            \"name\": \"Fulano\",\n            \"birthdate\": \"1999-05-15\",\n            \"admission_date\": \"2020-06-12\",\n            \"job_role\": \"Desenvolvedor\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Store - Rota de criação de projeto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Projeto Bom\",\n    \"navers\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"projects"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Recebe através do body da request os dados do projeto e um array com os identificadores dos navers que trabalham nele e cria um novo registro no banco de dados vinculado ao usuário que fez a request, a declaração dos navers que participam do projeto não é obrigatória na sua criação"
+					},
+					"response": [
+						{
+							"name": "Retorna  o objeto do Projeto criado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Projeto Bom\",\n    \"navers\": [1]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/:user_id/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										":user_id",
+										"projects"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-W2qqusI3irQYzlgtR5uU/1MOa9M\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Feb 2022 12:03:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Projeto Bom\",\n    \"navers\": [\n        {\n            \"id\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update - Rota para atualização de projeto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Projeto Bom\",\n    \"navers\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/projects/:project_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"projects",
+								":project_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "project_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Recebe através do body da request os dados do projeto e um array com os identificadores dos navers que trabalham nele e atualiza seu registro no banco de dados, a declaração dos navers que participam do projeto não é obrigatória na sua atualização\nUm usuário só pode editar seus próprios projetos"
+					},
+					"response": [
+						{
+							"name": "Retorna o objeto do projeto Atualizado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Projeto Bom\",\n    \"navers\": [1]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/:user_id/projects/:project_id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										":user_id",
+										"projects",
+										":project_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										},
+										{
+											"key": "project_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-W2qqusI3irQYzlgtR5uU/1MOa9M\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Feb 2022 12:17:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Projeto Bom\",\n    \"navers\": [\n        {\n            \"id\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete  - Rota para deletar um projeto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/:user_id/projects/:project_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":user_id",
+								"projects",
+								":project_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "project_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Recebe um identificador de projeto e o remove dos registros do banco\nUm usuário só pode deletar seus próprios projetos"
+					},
+					"response": []
+				}
+			],
+			"description": "Seção destinada a conter as rotas relacionadas aos projetos",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
